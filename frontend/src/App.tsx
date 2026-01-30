@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 
 export default function RepurposeAIDashboard() {
+  const API_BASE = (import.meta.env.VITE_API_BASE as string) || 'http://127.0.0.1:8000';
   const [query, setQuery] = useState('');
   const [isRunning, setIsRunning] = useState(false);
   const [activeAgent, setActiveAgent] = useState<string | null>(null);
@@ -25,7 +26,7 @@ export default function RepurposeAIDashboard() {
     setError(null);
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/analyze', {
+      const res = await fetch(`${API_BASE}/api/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query })
@@ -53,7 +54,7 @@ export default function RepurposeAIDashboard() {
 
     setDownloading(true);
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/report/pdf', {
+      const res = await fetch(`${API_BASE}/api/report/pdf`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ analysis: results })
