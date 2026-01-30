@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pydantic
+requests
+reportlab>=4.0.0
+python-dotenv
